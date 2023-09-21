@@ -96,9 +96,6 @@ callback_minimal(struct lws *wsi, enum lws_callback_reasons reason,
               while ((dup2(filedes[1], STDOUT_FILENO) == -1) && (errno == EINTR)) {}
               close(filedes[0]);
 
-              // int devNull = open("/dev/null", O_RDONLY);
-              // int dup2Result = dup2(devNull, STDIN_FILENO);
-
               int devNull = open("/home/crist/.local/share/nvim/features", O_RDONLY);
               int dup2Result = dup2(devNull, STDIN_FILENO);
 
@@ -109,7 +106,6 @@ callback_minimal(struct lws *wsi, enum lws_callback_reasons reason,
 
               execl("/usr/bin/dmenu", "dmenu", "-f", "-l", "50", "-i", NULL);
 
-              // execl("/usr/bin/zenity", "zenity", "--entry", "--text=Query:", NULL);
               perror("execl");
               exit(1);
             }
